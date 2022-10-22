@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from './Menu';
 import Block from './Block';
 
@@ -8,14 +7,17 @@ const Feed = () => {
     // Refer to Hint 2 for more help!
 
     /* Use the map() function to render multiple Blocks! */
-    const posts = null; // TODO: edit this variable
-
+    var [ posts, setPost ] = useState([]); // TODO: edit this variable
+    
+    function addPost (color) {
+        setPost([...posts, color])
+    };
+    
     return (
         <div>
-            <Menu></Menu>
-
+            <Menu posts={posts} addPost={addPost}></Menu>
             {/* Below is where all of your Blocks should render! */}
-            {posts}
+            {posts.map((color) => ( <Block name={color}></Block> ))}
         </div>
     );
 }
